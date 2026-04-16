@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Prime - Dashboard de Vagas</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Chart.js para os gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">M</div>
+            <div class="title-container">
+                <h1>MASTER PRIME CONSÓRCIOS</h1>
+                <p class="subtitle">Criado e gerenciado por Allan, Carlos, Erik, Larissa e Leonardo</p>
+                <p class="desc">Painel de Vagas Disponíveis · Automóveis · Imóveis · Veículos Pesados</p>
+            </div>
+        </div>
+        <div class="time-container">
+            <div id="clock" class="clock">00:00:00</div>
+            <div id="date" class="date">Carregando...</div>
+        </div>
+    </header>
+    
+    <div class="status-bar" id="status-bar">
+        Carregando dados...
+    </div>
+
+    <main class="dashboard-container">
+        <!-- Coluna Automóveis -->
+        <div class="column" id="col-auto">
+            <div class="col-header auto-header">
+                <span class="icon">🚗</span> AUTOMÓVEIS
+                <span class="progress" id="prog-auto"></span>
+            </div>
+            <div class="cards-container" id="cards-auto"></div>
+        </div>
+
+        <!-- Coluna Imóveis -->
+        <div class="column" id="col-imovel">
+            <div class="col-header imovel-header">
+                <span class="icon">🏠</span> IMÓVEIS
+                <span class="progress" id="prog-imovel"></span>
+            </div>
+            <div class="cards-container" id="cards-imovel"></div>
+        </div>
+
+        <!-- Coluna Veículos Pesados -->
+        <div class="column" id="col-pesado">
+            <div class="col-header pesado-header">
+                <span class="icon">🚛</span> VEÍCULOS PESADOS
+                <span class="progress" id="prog-pesado"></span>
+            </div>
+            <div class="cards-container" id="cards-pesado"></div>
+        </div>
+    </main>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

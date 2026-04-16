@@ -862,6 +862,11 @@ class CatColumn(tk.Frame):
 # 🖥️ FUNÇÕES PARA DETECÇÃO DE MONITORES (Windows)
 # ══════════════════════════════════════════════════════════════════════════════
 def get_monitors_windows():
+    return [] # Desativado no macOS
+
+# O código original de detecção do Windows foi comentado para evitar erros no Mac
+"""
+def get_monitors_windows_original():
     monitors = []
     class MONITORINFOEXW(ctypes.Structure):
         _fields_ = [
@@ -887,6 +892,7 @@ def get_monitors_windows():
     callback = MonitorEnumProc(monitor_enum_proc)
     ctypes.windll.user32.EnumDisplayMonitors(None, None, callback, 0)
     return monitors
+"""
 
 # ══════════════════════════════════════════════════════════════════════════════
 # DASHBOARD PRINCIPAL – com seleção de monitor e botão vermelho SAIR (CORRIGIDO)

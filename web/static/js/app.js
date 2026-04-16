@@ -405,6 +405,93 @@ function renderAllColumns() {
     renderColumn('pesado');
 }
 
+// Controle do Painel
+function toggleControlPanel() {
+    const modal = document.getElementById('control-panel');
+    modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+    if (modal.style.display === 'block') {
+        pollStatus();
+    }
+}
+
+async function startExtraction() {
+    const user = document.getElementById('ext-user').value;
+    const pass = document.getElementById('ext-pass').value;
+    const btn = document.getElementById('btn-start-ext');
+
+    try {
+        btn.disabled = true;
+        btn.innerText = '⌛ Iniciando...';
+
+        const response = await fetch('/api/extrair', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ usuario: user, senha: pass })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            pollStatus();
+        } else {
+            alert('Erro: ' + (result.error || 'Falha ao iniciar extração'));
+            btn.disabled = false;
+            btn.innerText = '🚀 Iniciar Nova Extração';
+        }
+    } catch (error) {
+        alert('Erro de conexão: ' + error.message);
+        btn.disabled = false;
+        btn.innerText = '🚀 Iniciar Nova Extração';
+    }
+}
+
+let statusInterval = null;
+async function pollStatus() {
+    if (statusInterval) return;
+
+    statusInterval = setInterval(async () => {
+        try {
+            const response = await fetch('/api/status');
+            const status = await response.json();
+
+            const dot = document.getElementById('ext-status-dot');
+            const text = document.getElementById('ext-status-text');
+            const log = document.getElementById('ext-log');
+            const progress = document.getElementById('ext-progress-bar');
+            const btn = document.getElementById('btn-start-ext');
+
+            if (status.rodando) {
+                dot.classList.add('active');
+                text.innerText = 'Extraindo dados...';
+                btn.disabled = true;
+                btn.innerText = '⌛ Extração em andamento...';
+            } else {
+                dot.classList.remove('active');
+                text.innerText = 'Aguardando início...';
+                btn.disabled = false;
+                btn.innerText = '🚀 Iniciar Nova Extração';
+                
+                // Se parou de rodar e estava rodando, buscar novos dados
+                if (status.progresso === 100) {
+                    fetchData(); 
+                }
+            }
+
+            log.innerText = status.ultimo_log || '---';
+            progress.style.width = status.progresso + '%';
+            progress.innerText = status.progresso + '%';
+
+            // Parar de poll se fechar o modal e não estiver rodando
+            const modal = document.getElementById('control-panel');
+            if (modal.style.display !== 'block' && !status.rodando) {
+                clearInterval(statusInterval);
+                statusInterval = null;
+            }
+        } catch (error) {
+            console.error('Erro no poll de status:', error);
+        }
+    }, 2000);
+}
+
 // Inicializacao e Rotação
 fetchData();
 

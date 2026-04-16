@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Prime - Dashboard de Vagas</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- Chart.js para os gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
@@ -18,6 +18,9 @@
                 <p class="subtitle">Criado e gerenciado por Allan, Carlos, Erik, Larissa e Leonardo</p>
                 <p class="desc">Painel de Vagas Disponíveis · Automóveis · Imóveis · Veículos Pesados</p>
             </div>
+        </div>
+        <div class="controls-trigger" onclick="toggleControlPanel()">
+            <span class="icon">⚙️</span> Painel de Controle
         </div>
         <div class="time-container">
             <div id="clock" class="clock">00:00:00</div>
@@ -58,6 +61,49 @@
         </div>
     </main>
 
-    <script src="/static/js/app.js"></script>
+    <!-- Painel de Controle (Modal) -->
+    <div id="control-panel" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ Painel de Controle do Extrator</h2>
+                <span class="close" onclick="toggleControlPanel()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="config-section">
+                    <h3>Credenciais Porto Seguro</h3>
+                    <div class="input-group">
+                        <label for="ext-user">Usuário (CPF):</label>
+                        <input type="text" id="ext-user" placeholder="000.000.000-00">
+                    </div>
+                    <div class="input-group">
+                        <label for="ext-pass">Senha:</label>
+                        <input type="password" id="ext-pass" placeholder="******">
+                    </div>
+                </div>
+                
+                <div class="status-section">
+                    <h3>Status da Extração</h3>
+                    <div id="ext-status-box" class="status-box">
+                        <div class="status-indicator">
+                            <span id="ext-status-dot" class="dot"></span>
+                            <span id="ext-status-text">Aguardando...</span>
+                        </div>
+                        <div class="progress-container">
+                            <div id="ext-progress-bar" class="progress-bar">0%</div>
+                        </div>
+                        <p id="ext-log" class="log-text">---</p>
+                    </div>
+                </div>
+
+                <div class="action-section">
+                    <button id="btn-start-ext" class="btn-primary" onclick="startExtraction()">
+                        🚀 Iniciar Nova Extração
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>

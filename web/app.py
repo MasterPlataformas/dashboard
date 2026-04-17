@@ -26,6 +26,7 @@ except Exception as e:
     extrator = None
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 # Diretório base
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -9,11 +9,20 @@ import time
 import sys
 
 # Importar lógica do extrator
-# Adicionamos o diretório pai ao path para conseguir importar o extrator_porto_seguro
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Adicionar diretório pai ao path
+PARENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PARENT_DIR not in sys.path:
+    sys.path.append(PARENT_DIR)
+
 try:
     import extrator_porto_seguro as extrator
-except ImportError:
+except Exception as e:
+    print("\n" + "="*50)
+    print("ERRO CRÍTICO NA IMPORTAÇÃO DO EXTRATOR:")
+    print(e)
+    import traceback
+    traceback.print_exc()
+    print("="*50 + "\n")
     extrator = None
 
 app = Flask(__name__)
@@ -289,5 +298,5 @@ def executar_extracao_background(usuario, senha):
         EXTRATOR_STATUS["progresso"] = 100
 
 if __name__ == '__main__':
-    # Rodar servidor acessível na rede local, na porta 8080
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    # Força IPv4 explicitamente
+    app.run(host='0.0.0.0', port=8888, debug=False, threaded=True)

@@ -1,8 +1,8 @@
 const COLORS = {
-    auto: '#60A7EA',
+    auto: '#FF1212',
     imovel: '#FF1212',
-    pesado: '#D849FC',
-    gold: '#FFB300',
+    pesado: '#FF1212',
+    gold: '#FF1212',
     green: '#4CAF50',
     white: '#FFFFFF',
     bg3: '#141C30',

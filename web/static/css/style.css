@@ -9,16 +9,16 @@
     --orange: #FF6B2B;
     --gold: #FFB300;
     --green: #4CAF50;
-    --red: #B71C1C;
+    --red: #919679;
     --white: #FFFFFF;
     --text: #E0E8FF;
     --text2: #8899BB;
     --text3: #556080;
     --border: #1E2D50;
     
-    --auto-acc: #60A7EA;
-    --imovel-acc: #FF1212;
-    --pesado-acc: #D849FC;
+    --auto-acc: #00ffd1;
+    --imovel-acc: #ff9100;
+    --pesado-acc: #0b8cf7;
     
     --font: 'Segoe UI', system-ui, sans-serif;
 }

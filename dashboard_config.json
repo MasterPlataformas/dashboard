@@ -1,0 +1,27 @@
+{
+  "auto": {
+    "min_meses": 30,
+    "max_meses": 57,
+    "max_vagas_livres": 200,
+    "favoritos": [],
+    "arquivo": "C:\\Users\\erikx\\OneDrive - t2tml\\Área de Trabalho\\dashboard\\vagas_automoveis.xlsx",
+    "tempo_grupo_segundos": 30
+  },
+  "imovel": {
+    "min_meses": 116,
+    "max_meses": 144,
+    "max_vagas_livres": 200,
+    "favoritos": [],
+    "arquivo": "C:\\Users\\erikx\\OneDrive - t2tml\\Área de Trabalho\\dashboard\\vagas_imoveis.xlsx",
+    "tempo_grupo_segundos": 25
+  },
+  "pesado": {
+    "min_meses": 57,
+    "max_meses": 100,
+    "max_vagas_livres": 200,
+    "favoritos": [],
+    "arquivo": "C:\\Users\\erikx\\OneDrive - t2tml\\Área de Trabalho\\dashboard\\vagas_veiculos_pesados.xlsx",
+    "tempo_grupo_segundos": 40
+  },
+  "historico": "C:\\Users\\erikx\\OneDrive - t2tml\\Área de Trabalho\\dashboard\\Lances Master Prime.xlsx"
+}
